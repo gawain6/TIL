@@ -5,14 +5,17 @@ import copy
 def breadth_first_search(dic):
     q=Queue()
     q.enqueue(dic['you'])
+    searched=[]
 
     while not q.empty():
         person=q.dequeue()
-        if person_is_seller(person):
-            print(person+" is a mango seller!")
-            return True
-        else:
-            q.enqueue(dic[person])
+        if not person in searched:
+            if person_is_seller(person):
+                print(person+" is a mango seller!")
+                return True
+            else:
+                q.enqueue(dic[person])
+                searched.append(person)
     return False
 
 def person_is_seller(name):
