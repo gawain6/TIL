@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--템플릿 엔진 코드 Start.-->
+<!-- 중괄호와 퍼센트 사이: 기능 태그-->
+<!-- 더블 중괄호 : 출력 태그-->
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+<!--템플릿 엔진 코드 End.-->
+</body>
+</html>

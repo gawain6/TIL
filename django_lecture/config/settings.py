@@ -29,14 +29,16 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# 앱 : 장고 프로젝트에서 동작할 기능들, 사용자들이 사용할 기능
+# 미들웨어 : 웹 서버와 장고 애플리케이션 사이에서 동작하는 기능(보안관련). 장고어플리케이션에 일을 안시키고 사전 처리를 해야 할 때 사용한다.
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin', # 관리자 페이지
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.sessions', # 로그인, 로그아웃 관련
+    'django.contrib.messages', # 오류메시지
+    'django.contrib.staticfiles', # 정적파일
+    'polls',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        'APP_DIRS': True, # 장고 내부규약으로 templates 디렉토리부터 찾겠다고 정해져있음. True: 각 앱 폴더 밑에서 찾겠다.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -73,6 +75,28 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# 데이터베이스 설정
+# 1. DB 제품군 설정 : sqlite3, mysql, postgre, oracle
+# 2. DBMS 계정정보 : host, dbname(상용데이터 베이스는 dbname도 추가), id, password
+# 3. Master, Slave 설정 :
+# 쓰기 가능한 Master DB: 1대만 둔다. ->
+# 읽기 전용 Slave DB : 여러 대를 둔다., 기본 맥시멈은 5대.
+# 클러스터링 : 여러 대의 db에 대한 동기화 같은 설정이 힘들 때 사용한다. => AWS의 Aurora DB, MySQL, MariaDB
+
+# 댓수를 늘리는 것 : Out Scaling
+# 사용을 높이는 것 : Up Scaling
+
+# 1. 데이터베이스 설정 하기
+# 2. 데이터베이스 초기화 하기 : python manage.py migrate
+# migrate : 초기화, DB 변경 사항을 적용할 때
+# 3. 관리자 계정 생성하기 : python manage.py createsuperuser
+# 3-1. 계정명 : admin, 이메일 : (생략 가능), 비밀번호 : 알아서 지정
+# 3-2. 비밀번호 변경 : python manage.py changepassword [계정명]
+# 관리자페이지 : DB를 사용하기 위한 인터페이스
+# 장고 관리자 페이지는 개발자를 위한 관리자 페이지
+# 초반에는 실무자랑 같이 사용하고, 나중에 실무자를 위한 관리자페이지를 별도 제작하는 것이 좋다.
+
+# 위 데이터베이스 설정들을 아래에 설정하는 것이다.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
