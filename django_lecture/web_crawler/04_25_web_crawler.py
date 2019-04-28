@@ -1,5 +1,6 @@
 import requests, json
 
+# 헤더 정보 설정
 custom_headers = {
     # 요청 주소 설정하기
     'referer' : 'https://www.daum.net',
