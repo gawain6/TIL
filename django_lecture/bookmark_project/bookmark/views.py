@@ -32,7 +32,7 @@ from django.views.generic.edit import CreateView
 class BookmarkCreate(CreateView):
     model = Bookmark
     # fileds는 사용자가 입력할 모델 필드를 정하는 것
-    fields = ['site_name', 'url']
+    fields = ['site_name', 'url', 'contents']
     # 템플릿 기본 이름 : _form
     template_name_suffix = '_create'
     success_url = '/'
@@ -41,7 +41,7 @@ class BookmarkCreate(CreateView):
 from django.views.generic.edit import UpdateView
 class BookmarkUpdate(UpdateView):
     model = Bookmark
-    fields = ['site_name', 'url']
+    fields = ['site_name', 'url', 'contents']
     # 템플릿 기본 이름 : _form
     template_name_suffix = '_update'
     success_url = '/'
