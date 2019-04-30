@@ -1,0 +1,20 @@
+<!--이 문서는 html5를 기준으로 작성됨-->
+<!DOCTYPE html>
+<!-- 이 문서는 영어로 작성됨 (한글이 깨지진 않지만 구글에서 영문으로 작성된 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body>
+<!-- bootstrap
+-->
+{% block content %}
+{% endblock %}
+
+{% block extra_script %}
+{% endblock %}
+</body>
+</html>

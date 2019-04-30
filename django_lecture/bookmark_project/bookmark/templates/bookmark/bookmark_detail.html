@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Bookmark detail{% endblock %}
+
+{% block content %}
+{{object.id}}<br>
+{{object.site_name}}<br>
+<a href="{{object.url}}" target="_blank">링크</a><br>
+<!--{% url 'urls.py의 appname-->
+<a href="{% url 'bookmark:update' object.id %}">수정</a>
+<a href="{% url 'bookmark:delete' object.id %}">삭제</a>
+{% endblock %}
