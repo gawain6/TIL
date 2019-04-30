@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Bookmark Create{% endblock %}
+
+{% block content %}
+<!--action=자료입력 완료되면 전달될 페이지 (대부분(장고포함) 프레임워크는 비워둠-->
+<form action="" method="post">
+    <!--보안 관련-->
+    {% csrf_token %}
+
+    {{form.as_p}}
+    <input type="submit" value="Create">
+</form>
+{% endblock %}

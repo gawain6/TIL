@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+<!--
+C - 객체를 생성 -> 객체 필요 없음
+R - 단일 object
+U - 단일 object
+D - 단일 object
+L - 복수 object_list
+
+CSS Framework
+1. Bootstrap
+2. Flat UI (부트스트랩보다 좀 더 이쁨)
+3. Material Design Lite : Google에서 만듬. Android랑 디자인이 비슷하게
+-->
+{% block title %}Bookmark List{% endblock %}
+
+{% block content %}
+    {# bookmark 목록 출력하기 #}
+    {% for object in object_list %}
+        <a href="{% url 'bookmark:detail' object.id %}">{{object.id}} {{object.site_name}}</a>
+        {{object.url}} <br>
+    {% endfor %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Create" onclick="'location.href={% url 'bookmark:create' %}'">
+    </form>
+{% endblock %}
