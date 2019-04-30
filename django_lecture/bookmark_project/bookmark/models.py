@@ -13,6 +13,7 @@ from django.db import models
 class Bookmark(models.Model):
     site_name = models.CharField(max_length=50)
     url = models.URLField()
+    contents = models.TextField(blank=True)
     # 사용자에게 입력을 안받는 정보
     # 작성자 -> 로그인한 유저 정보를 찾아서 추가
     # 작성자 == 로그인한 유저다 (장고는 이를 모르기 때문에 모델 저장 직전에 직접 코드로 처리)

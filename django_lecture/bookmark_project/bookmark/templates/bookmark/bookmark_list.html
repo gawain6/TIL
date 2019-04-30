@@ -14,13 +14,34 @@ CSS Framework
 {% block title %}Bookmark List{% endblock %}
 
 {% block content %}
+<div class="row">
+    <div class="col"></div>
+<!-- 가장 작은 화면은 12칸, 중간 크기는 8칸, 가장 큰 크기는 4칸을 차지   -->
+    <div class="col-12 col-xl-8 col-md-4">
     {# bookmark 목록 출력하기 #}
-    {% for object in object_list %}
-        <a href="{% url 'bookmark:detail' object.id %}">{{object.id}} {{object.site_name}}</a>
-        {{object.url}} <br>
-    {% endfor %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Create" onclick="'location.href={% url 'bookmark:create' %}'">
-    </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">index</th>
+                    <th scope="col">name</th>
+                    <th scope="col">link</th>
+                    <th scope="col">update</th>
+                    <th scope="col">delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{object.id}}</td>
+                    <td><a href="{% url 'bookmark:detail' object.id %}">{{object.site_name}}</a></td>
+                    <td>{{object.url}}</td>
+                    <td><a href="{% url 'bookmark:update' object.id %}" class="btn btn-outline-primary">M</a></td>
+                    <td><a href="{% url 'bookmark:delete' object.id %}" class="btn btn-outline-danger">D</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col"></div>
+</div>
 {% endblock %}
