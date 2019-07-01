@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>AutoCompleteウィジェット</title>
+<link type="text/css" rel="stylesheet"
+  href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
+<script type="text/javascript"
+  src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript"
+  src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+            var source = [];
+            $.ajax({
+                  url : "https://api.steampowered.com/ISteamWebAPIUtil/GetSupportedAPIList/v1/",
+                  data : "GET",
+                  dataType : "json",
+                  success : function(data){
+                       for(var i in data){
+                           source.push(data[i]);
+                        }
+                  }
+                 });
+            $('.auto').autocomplete({
+                source: source,
+                MinLength: 2
+            });
+        });
+</script>
+</head>
+<body>
+<!--1オートコンプリート機能を適用するテキストボックスを準備-->
+<label for="txtKeywd">キーワード</label>：
+<input id="txtKeywd" type="search" size="20" maxlengh="50" />
+</body>
+</html>
