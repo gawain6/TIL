@@ -1,14 +1,18 @@
-dp = [1, 2] # dp[0], dp[1] 초기화
+import sys
+sys.setrecursionlimit(1500)
+
+dp = [0 for i in range(2000)]
+dp[0] = 1
+dp[1] = 2
 
 def function(n):
-    if dp[n-1]:
-        print(dp[n-1])
+    if dp[n-1] > 0:
+        return dp[n-1]
     else:
-        pass
-            
+        ret = (function(n-1) + function(n-2)) % 10007
+        dp[n-1] = ret
+        return ret
 
 if __name__ == "__main__":
     n = int(input())
-    function(n)
-
-    print('dd', dp[n])
+    print(function(n))
