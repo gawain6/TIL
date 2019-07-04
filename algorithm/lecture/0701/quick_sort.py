@@ -1,6 +1,7 @@
-
 # pivot을 기준으로 파티션을 나눔
 # pivot의 왼 쪽은 작은 값이, 오른 쪽은 크거나 같은 값으로 정리한다.
+# 먼저 퀀커 후 디바이드
+# O(n log n)
 
 def quick_sort(arr, start, end):
     # base case

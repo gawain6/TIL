@@ -21,8 +21,7 @@ class CQueue:
     def is_empty(self):
         if self.__head == self.__tail:
             return True
-        else:
-            return False
+        return False
 
     def is_full(self):
         next = self.__step_forward(self.__tail)
