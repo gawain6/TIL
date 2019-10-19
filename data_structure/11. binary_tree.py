@@ -1,11 +1,14 @@
-from lstack import LStack
-from lqueue import LQueue
+from queue import Queue
+from stack import Stack
 
 class TreeNode:
-    def __init__(self, data):
+    def __init__(self, data=None):
         self.__data=data
-        self.__left=None # 왼쪽 자식
-        self.__right=None # 오른쪽 자식
+        self.__left=None
+        self.__right=None
+
+    def __del__(self):
+        print('data {} is deleted'.format(self.__data))
 
     @property
     def data(self):
@@ -20,27 +23,22 @@ class TreeNode:
         return self.__left
 
     @left.setter
-    def left(self, data):
-        self.__left=data
+    def left(self, left):
+        self.__left=left
 
     @property
     def right(self):
         return self.__right
 
     @right.setter
-    def right(self, data):
-        self.__right=data
+    def right(self, right):
+        self.__right=right
 
 def preorder(cur):
-    '''
-    recursion function
-    cur : 현재 노드
-    '''
     if not cur:
         return
 
-    # 방문 구현 : data로 출력
-    print(cur.data, end=' ')
+    print(cur.data, end='  ')
     preorder(cur.left)
     preorder(cur.right)
 
@@ -49,7 +47,7 @@ def inorder(cur):
         return
 
     inorder(cur.left)
-    print(cur.data, end=' ')
+    print(cur.data, end='  ')
     inorder(cur.right)
 
 def postorder(cur):
@@ -58,38 +56,35 @@ def postorder(cur):
 
     postorder(cur.left)
     postorder(cur.right)
-    print(cur.data, end=' ')
+    print(cur.data, end='  ')
 
 def iter_preorder(cur):
-    stack=LStack()
-    
+    s=Stack()
     while True:
         while cur:
-            print(cur.data, end=' ') # 방문: data 출력
-            stack.push(cur)
+            print(cur.data, end='  ')
+            s.push(cur)
             cur=cur.left
-        cur=stack.pop()
+        cur=s.pop()
         if not cur:
             break
         cur=cur.right
 
-
 def iter_inorder(cur):
-    stack=LStack()
-    
+    s=Stack()
     while True:
         while cur:
-            stack.push(cur)
+            s.push(cur)
             cur=cur.left
-        cur=stack.pop()
+        cur=s.pop()
         if not cur:
             break
-        print(cur.data, end=' ') # 방문: data 출력
+        print(cur.data, end='  ')
         cur=cur.right
 
 def iter_postorder(cur):
-    s1=LStack()
-    s2=LStack()
+    s1=Stack()
+    s2=Stack()
 
     s1.push(cur)
     while not s1.empty():
@@ -98,27 +93,25 @@ def iter_postorder(cur):
 
         if cur.left:
             s1.push(cur.left)
-
+    
         if cur.right:
             s1.push(cur.right)
-
+    
     while not s2.empty():
         cur=s2.pop()
-        print(cur.data, end=' ')
-
+        print(cur.data, end='  ')
+            
 def levelorder(cur):
-    queue=LQueue()
+    q=Queue()
 
-    queue.enqueue(cur)
-    while not queue.empty():
-        cur=queue.dequeue()
-        print(cur.data, end=' ')
-
+    q.enqueue(cur)
+    while not q.empty():
+        cur=q.dequeue()
+        print(cur.data, end='  ')
         if cur.left:
-            queue.enqueue(cur.left)
-        
+            q.enqueue(cur.left)
         if cur.right:
-            queue.enqueue(cur.right)
+            q.enqueue(cur.right)
 
 if __name__=="__main__":
     n1=TreeNode(1)
@@ -133,14 +126,17 @@ if __name__=="__main__":
     n2.left=n4; n2.right=n5
     n3.left=n6; n3.right=n7
 
-    print('iter_inorder')
+    #preorder(n1)
+    iter_preorder(n1)
+    print()
+
+    #inorder(n1)
     iter_inorder(n1)
-    print(); print()
+    print()
 
-    print('iter_postorder')
+    #postorder(n1)
     iter_postorder(n1)
-    print(); print()
+    print()
 
-    print('levelorder')
     levelorder(n1)
     print()
