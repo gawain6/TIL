@@ -1,6 +1,5 @@
 import random
 
-
 def selection_sort(li):
     n=len(li)
 
