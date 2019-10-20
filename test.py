@@ -1,44 +1,106 @@
-import random
+from data_structure.queue import Queue
+from data_structure.stack import Stack
 
-def get_pivot_index(li, start, mid, end):
-    idx_li = [start, mid, end]
-    if li[idx_li[0]] > li[idx_li[1]]:
-        idx_li[0], idx_li[1] = idx_li[1], idx_li[0]
-    if li[idx_li[1]] > li[idx_li[2]]:
-        idx_li[1], idx_li[2] = idx_li[2], idx_li[1]
-    if li[idx_li[0]] > li[idx_li[1]]:
-        idx_li[0], idx_li[1] = idx_li[1], idx_li[0]
-    return idx_li[1]
+class TreeNode:
+    def __init__(self, data=None):
+        self.__data = data
+        self.__left = None
+        self.__right = None
+        
+    def __del__(self):
+        print(f'data of {self.__data} is deleted')
+        
+    @property
+    def data(self):
+        return self.__data
     
-def quick_sort(li, start, end):
-    if start >= end:
+    @data.setter
+    def data(self, data):
+        self.__data = data
+    
+    @property
+    def left(self):
+        return self.__left
+    
+    @left.setter
+    def left(self, left):
+        self.__left = left
+    
+    @property
+    def right(self):
+        return self.__right
+    
+    @right.setter
+    def right(self, right):
+        self.__right = right
+
+def preorder(cur):
+    if not cur:
         return
-    left = start
-    right = end
-    mid = (start+end) // 2
-    
-    pivot_idx = get_pivot_index(li, start, mid, end)
-    li[mid], li[pivot_idx] = li[pivot_idx], li[mid]
-    
-    pivot = li[mid]
-    while left <= right:
-        while li[left] < pivot:
-            left += 1
-        while li[right] > pivot:
-            right -= 1
-        if left <= right:
-            li[left], li[right] = li[right], li[left]
-            left += 1
-            right -= 1
-    quick_sort(li, start, right)
-    quick_sort(li, left, end)
+    print(cur.data, end=' ')
+    preorder(cur.left)
+    preorder(cur.right)
 
-if __name__ == "__main__":
+def inorder(cur):
+    pass
+    
+def postorder(cur):
+    pass
+
+def iter_preorder(cur):
+    s = Stack()
     while True:
-        num_data=int(input('데이터 개수(종료:0):'))
-        if not num_data:
+        while cur:
+            print(cur.data, end=' ')
+            s.push(cur)
+            cur = cur.left
+        cur = s.pop()
+        if not cur:
             break
-        data=[random.randint(1, 100) for _ in range(num_data)]
-        print(data)
-        quick_sort(data, 0, len(data)-1)
-        print(data)
+        cur = cur.right
+    
+def iter_inorder(cur):
+    s = Stack()
+    while True:
+        while cur:
+            s.push(cur)
+            cur = cur.left
+        cur = s.pop()
+        if not cur:
+            break
+        print(cur.data, end=' ')
+        cur = cur.right
+
+def iter_postorder(cur):
+    pass
+    
+def levelorder(cur):
+    pass
+    
+if __name__=="__main__":
+    n1=TreeNode(1)
+    n2=TreeNode(2)
+    n3=TreeNode(3)
+    n4=TreeNode(4)
+    n5=TreeNode(5)
+    n6=TreeNode(6)
+    n7=TreeNode(7)
+
+    n1.left=n2; n1.right=n3
+    n2.left=n4; n2.right=n5
+    n3.left=n6; n3.right=n7
+
+    #preorder(n1)
+    iter_preorder(n1)
+    print()
+
+    #inorder(n1)
+    iter_inorder(n1)
+    print()
+
+    #postorder(n1)
+    iter_postorder(n1)
+    print()
+
+    levelorder(n1)
+    print()
