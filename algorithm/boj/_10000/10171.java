@@ -1,4 +1,4 @@
-package TIL.algorithm.boj;
+package TIL.algorithm.boj._10000;
 
 class Main10171 {
     public static void main(String[] args) {
