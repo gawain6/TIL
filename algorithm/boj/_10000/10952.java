@@ -7,22 +7,20 @@ import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-class Main10871 {
+class Main10952 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
         
-        int n = Integer.parseInt(st.nextToken());
-        int x = Integer.parseInt(st.nextToken());
-        
-        st = new StringTokenizer(br.readLine());
-        for(int i=0; i<n; i++) {
+        while(true) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
-            if(a<x)
-                bw.write(a+" ");
+            int b = Integer.parseInt(st.nextToken());
+            int sum = a + b;
+            if(sum==0)
+                break;
+            bw.write(sum+"\n");
         }
-        bw.newLine();
         bw.flush();
     }
 }
