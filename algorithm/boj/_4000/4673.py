@@ -1,23 +1,17 @@
 def d(n):
-    a = n//10000
-    b = (n%10000)//1000
-    c = ((n%10000)%1000)//100
-    d = (((n%10000)%1000)%100)//10
-    e = (((n%10000)%1000)%100)%10
-    li.append(n+a+b+c+d+e)
+    dn = n
+    while(n!=0):
+        dn += n%10
+        n //= 10
+    return dn
 
 if __name__ == "__main__":
-    li = []
-    n = 10000
+    li = [1] * 10001
     
-    for i in range(1, n+1):
-        d(i)
-    
-    li.sort()
-    ex_li = list(set(li))
-        
-    for i in range(1, n+1):
-        if i == ex_li[0]:
-            ex_li.pop(0)
-        else:
+    for i in range(1, 10001):
+        n = d(i) 
+        if n < 10001:
+            li[n] = 0
+    for i in range(1, 10001):
+        if li[i] == 1:
             print(i)
