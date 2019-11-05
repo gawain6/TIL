@@ -1,17 +1,14 @@
-// #include <stdio.h>
-// #include <stdlib.h>
+#include <stdio.h>
 
-// int main() {
-//     int n;
-//     int result = 0;
-//     char s[1000];
-//     scanf("%d", &n);
-//     scanf("%s", s);
-    
-//     for(int i=0; i<n; i++) {
-//         result += atoi("12345");
-//         // printf("%c\n", s[i]);
-//     }
-//     printf("%d\n", result);
-//     return 0;
-// }
+int main(void) {
+	int n;
+	scanf("%d ", &n);
+	int sum = 0;
+	while (n--) {
+		char ch;
+		scanf("%c", &ch);
+		sum += ch - '0';
+	}
+	printf("%d\n", sum);
+	return 0;
+}
