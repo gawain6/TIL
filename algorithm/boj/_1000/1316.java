@@ -1,7 +1,7 @@
 package TIL.algorithm.boj._1000;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 class Main1316 {
     public static void main(String[] args) throws IOException {
@@ -10,11 +10,20 @@ class Main1316 {
         int n = Integer.parseInt(br.readLine());
         int ret = 0;
         for(int i=0; i<n; i++) {
+            char prev = ' ';
+            ArrayList<Character> li = new ArrayList<>();
             StringBuilder word = new StringBuilder(br.readLine());
-            // if(word.toString().equals())
             char[] c = word.toString().toCharArray();
-            bw.write(c[0]+"\n");
+            for(int j=0; j<c.length; j++) {
+                if(!li.contains(c[j])) li.add(c[j]);
+                else if(li.contains(c[j])&&prev!=c[j]) {
+                    ret -= 1; break;
+                }
+                prev = c[j];
+            }
+            ret += 1;
         }
+        bw.write(ret+"\n");
         bw.flush();
     }
 }
