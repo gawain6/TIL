@@ -38,7 +38,6 @@ def get_prime(n):
 
 if __name__ == "__main__":
     n, m = map(int, input().split())
-    # n, m = 3, 16
     p = get_prime(m)
     for i in range(len(p)):
         if p[i] >= n:
