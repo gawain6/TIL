@@ -25,21 +25,23 @@
 #                 if i%j==0: prime_number = 0; break
 #         if prime_number: print(i)
 
-def get_prime(n):
+def get_prime(n): # n = 16
     if n < 2:
         return []
-    n += 1
-    save = [1] * (n // 2)
-    for i in range(3, int(n ** 0.5) + 1, 2):
-        if save[i // 2]:
-            k = i * i
-            save[k // 2::i] = [0] * ((n - k - 1) // (2 * i) + 1)
+    n += 1 # 17
+    save = [1] * (n // 2) # save = [1, 1, 1, 1, 0, 1, 1, 0]
+    for i in range(3, int(n ** 0.5) + 1, 2): # 3~5, i=3 next=5
+        if save[i // 2]: # save[1]
+            k = i * i # k = 9
+            save[k // 2::i] = [0] * ((n - k - 1) // (2 * i) + 1) # save[4], save[7] = [0] * 1
     return [2] + [(2 * i + 1) for i in range(1, n // 2) if save[i]]
+    # [2] + [(2 * i + 1) for i in range(1, 8) if save[i]] i=7]
+    # [2, 3, 5, 7, 11, 13]
 
 if __name__ == "__main__":
-    n, m = map(int, input().split())
-    p = get_prime(m)
-    for i in range(len(p)):
+    n, m = map(int, input().split()) # 3, 16 => 3, 5, 7, 11, 13
+    p = get_prime(m) # p = get_prime(16) -> [2, 3, 5, 7, 11, 13]
+    for i in range(len(p)): # 0~6
         if p[i] >= n:
             for j in p[i:]:
                 print(j)

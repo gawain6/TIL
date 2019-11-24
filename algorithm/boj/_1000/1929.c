@@ -1,29 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <stdbool.h>
 
-int* getPrime(int n);
+void getPrime(int n, int m) { // 3 16
+    bool *isPrimeArr = (bool*)malloc(m+1);
+    
+    for(int i=2; i<=m; i++) isPrimeArr[i] = true;
+    for(int i=2; i<=m; i++) { // isPrimeArr = [0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0]
+        if(isPrimeArr[i]) { // i=6
+            if(i>=n) printf("%d\n", i);
+            for(int j=i+i; j<=m; j+=i) isPrimeArr[j] = false;
+        }
+    }
+    free(isPrimeArr);
+}
 
 int main() {
     int n, m;
-    int *numPtr;
     scanf("%d %d", &n, &m);
-    
-    
-        
-}
-
-int* getPrime(int n) {
-    int i, k;
-    int *save;
-    if(n<2) return -1;
-    n++;
-    save = malloc(sizeof(int) * (n/2));
-    for(i=3; i<(int)pow(n, 0.5)+1; i++) {
-        if(save[i/2]) {
-            k = i * i;
-            save[k/2]
-        }
-        i++;
-    }
+    getPrime(n, m);
+    return 0;
 }

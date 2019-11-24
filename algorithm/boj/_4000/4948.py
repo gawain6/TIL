@@ -1,20 +1,23 @@
 import sys
 
-if __name__ == "__main__":
-    # while(True):
-    #     n = int(sys.stdin.readline())
-    #     if n==0: break
-        
-        
-    #     print(n)
-    M, N = map(int, input().split()) # 3 16 -> 3, 5, 7, 11, 13
-    arr = [True] * (N+1) # arr = [True] * 17
-    arr[0] = False; arr[1] = False # arr = [False, False, True, // True, True, ...]
-    for i in range(2, int(N**0.5) + 1): # 2~5
-        if arr[i] == True: # arr[2] == True
-            for j in range(i+i, N + 1, i): 
-                arr[j] = False
+def get_prime(n):
+    if n<2: return []
+    n += 1
+    save = [1] * (n//2)
+    for i in range(3, int(n**0.5)+1, 2):
+        if save[i//2]:
+            k = i*i
+            save[k//2::i] = [0] * ((n-k-1)//(2*i)+1)
+    return [2] + [(2*i+1) for i in range(1, n//2) if save[i]]
     
-    for i in range(M, N+1):
-        if arr[i] == True:
-            print(i)
+if __name__ == "__main__":
+    while(True):
+        n = int(sys.stdin.readline())
+        cnt = 0
+        if n==0: break
+        else:
+            p = get_prime(2*n)
+            for i in range(len(p)):
+                if p[i] > n:
+                    print(len(p[i:]))
+                    break
