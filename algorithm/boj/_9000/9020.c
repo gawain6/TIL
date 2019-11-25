@@ -1,14 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #define LIMIT 10
 
-void GetPrime(int* is_prime) {
-    is_prime[0] = 0, is_prime[1] = 0;
-    for(int i=2; i<sizeof(is_prime)/sizeof(int); i++) {
-        if(is_prime[i]) {
-            for(int j=i+i; j<sizeof(is_prime)/sizeof(int); j+=i)
-                is_prime[j] = 0;
+void GetPrime(int* isPrime) {
+    isPrime[0] = isPrime[1] = false;
+    for(int i=2; i<LIMIT; i++) isPrime[i] = true;
+    for(int i=2; i<LIMIT; i++) {
+        if(isPrime[i]) {
+            for(int j=i+i; j<LIMIT; j+=i) isPrime[j] = false;
         }
     }
+    printf("\n");
 }
 
 void Goldbach(int n, int* is_prime) {
@@ -22,13 +25,12 @@ void Goldbach(int n, int* is_prime) {
 
 int main() {
     int t;
-    int is_prime[LIMIT] = {1,};
+    int isPrime[LIMIT];
     
-    for(int i=0; i<sizeof(is_prime)/sizeof(int); i++) {
-        printf("%d ", is_prime[i]);
+    GetPrime(isPrime);
+    for(int i=0; i<LIMIT; i++) {
+        printf("%d ", isPrime[i]);
     }
-    
-    GetPrime(is_prime);
     // scanf("%d", &t);
     // for(int i=0; i<t; i++) {
     //     int n;

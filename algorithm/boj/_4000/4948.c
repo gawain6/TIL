@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void getPrime(int n, int m) { // 3 16
+void GetPrime(int n, int m) { // 3 16
     int cnt = 0;
     bool *isPrimeArr = (bool*)malloc(m+1);
                                                   //  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6
@@ -22,7 +22,7 @@ int main() {
         int n;
         scanf("%d", &n);
         if(n==0) break;
-        getPrime(n, n*2);
+        GetPrime(n, n*2);
     }
     return 0;
 }
