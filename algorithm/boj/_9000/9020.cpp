@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include <iostream>
 #define LIMIT 10001
+using namespace std;
 
 void GetPrime(int* isPrime) {
     isPrime[0] = isPrime[1] = false;
@@ -16,7 +15,7 @@ void GetPrime(int* isPrime) {
 void Goldbach(int n, int* isPrime) {
     for(int i=n/2; i<n+1; i++) {
         if(isPrime[i] & isPrime[n-i]) {
-            printf("%d %d\n", n-i, i);
+            cout << n-i << " " << i << endl;
             break;
         }
     }
@@ -27,11 +26,10 @@ int main() {
     int isPrime[LIMIT];
     
     GetPrime(isPrime);
-    scanf("%d", &t);
+    cin >> t;
     for(int i=0; i<t; i++) {
         int n;
-        scanf("%d", &n);
+        cin >> n;
         Goldbach(n, isPrime);
     }
-    return 0;
 }
