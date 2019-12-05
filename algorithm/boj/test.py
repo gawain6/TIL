@@ -5,6 +5,12 @@ def bubble_sort(li):
 
 def insertion_sort(li):
     pass
+
+def merge_sort(li, start, end):
+    pass
+    
+def selection_sort(li):
+    pass
     
 if __name__=="__main__":
     while True:
@@ -13,10 +19,21 @@ if __name__=="__main__":
             break
         b_data=[random.randint(1, 100) for _ in range(num_data)]
         i_data=[random.randint(1, 100) for _ in range(num_data)]
-        print(b_data)
+        m_data=[random.randint(1, 100) for _ in range(num_data)]
+        s_data=[random.randint(1, 100) for _ in range(num_data)]
+
+        print(f"bubble: {b_data}")
         bubble_sort(b_data)
-        print(b_data)
+        print(f"bubble: {b_data}")
         
-        print(i_data)
-        bubble_sort(i_data)
-        print(i_data)
+        print(f"insertion: {i_data}")
+        insertion_sort(i_data)
+        print(f"insertion: {i_data}")
+        
+        print(f"merge: {m_data}")
+        merge_sort(m_data, 0, len(m_data)-1)
+        print(f"merge: {m_data}")
+        
+        print(f"selection: {s_data}")
+        selection_sort(s_data)
+        print(f"selection: {s_data}")
