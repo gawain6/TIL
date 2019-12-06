@@ -2,7 +2,7 @@ import random
 
 def get_pivot_index(li, start, mid, end):
     idx_li=[start, mid, end]
-    if li[idx_li[0]] > li[idx_li[1]]:
+    if li[idx_li[0]] > li[idx_li[1]]: # start > mid
         idx_li[0], idx_li[1]=idx_li[1], idx_li[0]
     if li[idx_li[1]] > li[idx_li[2]]:
         idx_li[1], idx_li[2]=idx_li[2], idx_li[1]

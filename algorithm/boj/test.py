@@ -5,11 +5,14 @@ def bubble_sort(li):
 
 def insertion_sort(li):
     pass
-
+    
 def merge_sort(li, start, end):
     pass
     
 def selection_sort(li):
+    pass
+
+def quick_sort(li, start, end):
     pass
     
 if __name__=="__main__":
@@ -21,6 +24,7 @@ if __name__=="__main__":
         i_data=[random.randint(1, 100) for _ in range(num_data)]
         m_data=[random.randint(1, 100) for _ in range(num_data)]
         s_data=[random.randint(1, 100) for _ in range(num_data)]
+        q_data=[random.randint(1, 100) for _ in range(num_data)]
 
         print(f"bubble: {b_data}")
         bubble_sort(b_data)
@@ -37,3 +41,7 @@ if __name__=="__main__":
         print(f"selection: {s_data}")
         selection_sort(s_data)
         print(f"selection: {s_data}")
+        
+        print(f"quick: {q_data}")
+        quick_sort(q_data, 0, len(q_data)-1)
+        print(f"quick: {q_data}")
