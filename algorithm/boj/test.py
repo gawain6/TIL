@@ -5,7 +5,7 @@ def bubble_sort(li):
 
 def insertion_sort(li):
     pass
-    
+
 def merge_sort(li, start, end):
     pass
     
