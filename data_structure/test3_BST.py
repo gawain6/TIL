@@ -18,8 +18,8 @@ class TreeNode:
     @right.setter
     def right(self, right): self.__right=right
 class BST:
-    
-
+    pass
+            
 if __name__=="__main__":
     print('*'*100)
     bst=BST()
