@@ -85,17 +85,17 @@ class BST:
             cur.left, rem_node=self.__remove_recursion(cur.left, target)
         elif target > cur.key:
             cur.right, rem_node=self.__remove_recursion(cur.right, target)
-        else:
-            if not cur.left and not cur.right:
+        else: # target==cur.key
+            if not cur.left and not cur.right: # 삭제할 노드가 자식이 없는 경우
                 rem_node=cur
                 cur=None
-            elif not cur.right:
+            elif not cur.right: # 자식이 하나인 경우
                 rem_node=cur
                 cur=cur.left
-            elif not cur.left:
+            elif not cur.left: # 자식이 하나인 경우
                 rem_node=cur
                 cur=cur.right
-            else:
+            else: # 자식이 둘인 경우
                 replace=cur.left
                 while replace.right:
                     replace=replace.right
