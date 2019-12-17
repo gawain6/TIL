@@ -73,7 +73,7 @@ int main() {
         if(i==0) cnt=cur;
         else if(cnt>cur) cnt=cur;
     }
-    printf("%d", cnt);
+    printf("%d\n", cnt);
 }
 
 // BBBBB BWBWBWBW 1
