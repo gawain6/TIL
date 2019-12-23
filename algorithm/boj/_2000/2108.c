@@ -2,19 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-// 문제 : 주어진 수들의 산술평균, 중앙값, 최빈값, 범위를 출력
-// N(1 ≤ N ≤ 500,000)
-// 입력되는 정수의 절댓값은 4,000을 넘지 않는다.
-// 최빈값이 여러 개면 최빈값 중 두 번째로 작은 값을 출력한다.
-
-// 정수 개수인 n을 입력 받고, 정수 n개를 입력받음
-// 입력 받을 때 마다 정수들의 합을 sum에 저장
-// ex : 1, 3, 8, -2, 2 => -2, 1, 2, 3, 8
-// 산술평균=2
-// 중앙값=2
-// 최빈값=1
-// 범위=10
-
 int get_pivot_index(int * arr, int start, int mid, int end) {
     int temp;
     int idx_arr[]={start, mid, end};
@@ -48,35 +35,38 @@ int realNum(int n) {
     return n>4000 ? n-4000:-n;
 }
 
-// 0, 1~4000, 4001~8000
 int main() {
     long long sum=0;
-    int n, i, mid, idx, modeMax1, modeMax2, temp;
+    int n, i, mid, firstMin=-1, secondMin=-1;
     int mode[8001]={0,};
     scanf("%d", &n);
     int arr[n];
     for(i=0; i<n; i++) {
         scanf("%d", &arr[i]);
         sum+=arr[i];
-        idx=arr[i]>0?(4000+arr[i]):(abs(arr[i]));
-        mode[idx]++;
+        mode[arr[i]>0?(4000+arr[i]):(abs(arr[i]))]++;
+    }
+    quick_sort(arr, 0, n-1);
+    
+    for(i=0; i<8001; i++) {
+        if(mode[i]!=0&firstMin==-1) firstMin=secondMin=i;
         
-        if(i==0) modeMax1=modeMax2=idx;
-        else {
-            if(mode[modeMax1]<mode[idx]) modeMax1=modeMax2=idx;
-            else if(mode[modeMax1]==mode[idx]) {
-                if(realNum(modeMax1)>realNum(idx)) modeMax2=idx;
-                else if(realNum(modeMax1)<realNum(idx)) {
-                    modeMax2=modeMax1;
-                    modeMax1=idx;
+        else if(mode[i]!=0) {
+            if(mode[firstMin]<mode[i]) { // cnt가 더 큰 경우
+                firstMin=secondMin=i;
+            } else if(mode[firstMin]==mode[i]) { // cnt가 같은 경우
+                if(realNum(firstMin)>realNum(i)) { // -1 > -2
+                    if(realNum(firstMin)<realNum(secondMin)) secondMin=firstMin; // firstMin을 바꾸기 전 secondMin과 비교해서 두번째 작은 놈을 적용
+                    firstMin=i;
+                } else if(realNum(firstMin)==realNum(secondMin)|realNum(secondMin)>realNum(i)) {
+                    secondMin=i;
                 }
             }
         }
     }
-    quick_sort(arr, 0, n-1);
     
     printf("%lld\n", (long long)round((double)sum/(double)n));
     printf("%d\n", arr[n/2]);
-    printf("%d\n", realNum(modeMax2));
+    printf("%d\n", realNum(secondMin));
     printf("%d\n", abs(arr[n-1]-arr[0]));
 }
