@@ -2,19 +2,14 @@ import random
 
 def bubble_sort(li):
     pass
-
 def insertion_sort(li):
     pass
-
 def merge_sort(li, start, end):
     pass
-    
 def selection_sort(li):
     pass
-
 def quick_sort(li, start, end):
     pass
-    
 """
 void countingSort(int * arr, int * sorted, int size) {
     int i, j;
