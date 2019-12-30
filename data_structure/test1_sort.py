@@ -2,18 +2,30 @@ import random
 
 def bubble_sort(li):
     pass
-
 def insertion_sort(li):
     pass
-
 def merge_sort(li, start, end):
     pass
-    
 def selection_sort(li):
     pass
-
 def quick_sort(li, start, end):
     pass
+"""
+void countingSort(int * arr, int * sorted, int size) {
+    int i, j;
+    int temp[10000]={0,};
+    for(i=0; i<size; i++) {
+        temp[arr[i]]++;
+    }
+    for(i=1; i<sizeof(temp)/sizeof(int); i++) {
+        temp[i]+=temp[i-1];
+    }
+    for(i=0; i<size; i++) {
+        sorted[temp[arr[i]]-1]=arr[i];
+        temp[arr[i]]--;
+    }
+}
+"""
     
 if __name__=="__main__":
     while True:

@@ -6,7 +6,7 @@ class Queue:
     pass
 class TreeNode:
     pass
-
+        
 if __name__=="__main__":
     n1=TreeNode(1)
     n2=TreeNode(2)
