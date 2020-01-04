@@ -4,15 +4,19 @@ typedef enum { false, true } bool;
 
 bool isPromising(int col, int ** cols) { // col=0,1는 true가 나와야함
     // col=3
-    int i;
+    int i, j;
     for(i=1; i<col; i++) {
         if(cols[i]==cols[col]) return false; // 같은 열에 위치하면 false
         // cols[1]==cols[3]
-        else if(cols[i]==cols[col]-cols[i]) return false; // 대각선에 위치하면 false
-        // cols[2]==cols[3]-cols[2] => 3==2-3
-        // cols[i]==cols[col-(i-1)] =>
+        else { // 대각선에 위치하면 false
+            for(j=1; j<=abs(cols[i]-cols[col]); j++) {
+                if(i==col-j && cols[i]==cols[i]>cols[col]? cols[col]+j:cols[col]-j) return false;
+            }
+        }
     }
     return true;
+    // cols=[0, 1, 3, 4, 0], i=1, j=1 (j<=?)
+    // 
 }
 
 void dfs(int col, int * cnt, int n, int * cols) {
@@ -26,18 +30,15 @@ void dfs(int col, int * cnt, int n, int * cols) {
         dfs(col+1, cnt, n, cols); // col++;
     }
 }
-// 기저조건 : cols[1]과 가로, 세로, 대각선 위치에 있으면 탈출
-// [10]까지는 for문을 돌려야 함 그래야 [10] 이 후 [11],[12],[13]을 체크할 수 있음
-// [00][01][02][03]
-// [10][11][12][13]
-// [20][21][22][23]
-// [30][31][32][33]
-
-// cols=[0, 1, 3, 2, 0] // ex. idx 1이 1라면 첫 번째 퀸의 위치는 [0,0] 즉 [col, row]
+// cols=[0, 1, 3, 4, 0] // ex. idx 1이 1라면 첫 번째 퀸의 위치는 [0,0] 즉 [col, row]
+// [00][01][02][03]   [11][12][13][14]
+// [10][11][12][13]   [21][22][23][24]
+// [20][21][22][23]   [31][32][33][34]
+// [30][31][32][33]   [41][42][43][44]
 
 // n1=dfs(col=0) i=1 [00]
 // n2=dfs(col=1) i=3 [12]
-// n3=dfs(col=2) i=2 [21]
+// n3=dfs(col=2) i=4 [23]
 // n4=dfs(col=3) ...
 
 int main() {
