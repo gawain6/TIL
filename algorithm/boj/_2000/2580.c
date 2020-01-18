@@ -1,4 +1,5 @@
 #include <stdio.h>
+typedef enum { false, true} bool;
 
 // 먼저 열을 검사한다. 값 1을 시작으로 9까지 검사.
 // 중복이 될 경우 다음 값으로 넘어간다.
@@ -9,16 +10,29 @@
 // 현재 열에 0을 모두 변경하였다면 다음 열로 넘어가고, 위를 반복한다.
 // 마지막 열까지 모두 변경하였다면 배열 값을 출력한다.
 
-int n=1; // 1~9 스도쿠를 채울 값
-int sudoku[9][9]={0,}, check[10]={0,};
+int checkCol, checkRow, n=1; // 1~9 스도쿠를 채울 값
+int sudoku[9][9]={0,}
+bool check[10]={0,};
 
 void dfs(int col, int row, int size) { // 행, 열, 배열 크기
     int i;
-    // 가지치기 : 세로 중복되나 확인, 가로 중복되나 확인, 네모 중복 확인
+    if(sudoku[col][row]==sudoku[checkCol][checkRow]) {
+        return;
+    }
     
-    if(!sudoku[col][row]) sudoku[col][row]=n;
-    dfs(col+1, row, size);
+    check[row+1]=1;
+    if(!sudoku[col][row]) {
+        sudoku[col][row]=n; // 값이 0이면 n 입력
+        checkCol=col;
+        checkRow=row;
+    }
+    dfs(col, row+1, size); // 가로 중복 값 확인
 }
+
+// n=1
+// dfs1(0, 0, 9)
+// dfs2(0, 1, 9)
+
 
 int main() {
     int i, j;
