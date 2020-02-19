@@ -1,38 +1,19 @@
 #include <stdio.h>
-typedef enum { false, true} bool;
+typedef enum { false, true } bool;
 
-// 먼저 열을 검사한다. 값 1을 시작으로 9까지 검사.
-// 중복이 될 경우 다음 값으로 넘어간다.
-// 중복이 없으면(값이 유효하면) 행을 검사한다. 행에서 중복이 되면 다음 값으로 넘어가고, 다시 열부터 검사한다.
-// 행, 열 모두 중복이 없으면 [00]~[22], [03]~[25], [06]~[28] 과 같은 3x3크기에 중복이 없는지 검사한다.
-// 마찬가지로 중복이 존재하면 다음 값으로, 중복이 존재하지 않으면 sudoku 값을 변경한다.
-// 변경을 마치면 같은 열에 다음 0 값을 위를 반복한다.
-// 현재 열에 0을 모두 변경하였다면 다음 열로 넘어가고, 위를 반복한다.
-// 마지막 열까지 모두 변경하였다면 배열 값을 출력한다.
+int sudoku[9][9]={0,}, n, size=9;
+bool isBeing[10]={0,}; // 값이 존재하는지 체크. 있으면 true
 
-int checkCol, checkRow, n=1; // 1~9 스도쿠를 채울 값
-int sudoku[9][9]={0,}
-bool check[10]={0,};
-
-void dfs(int col, int row, int size) { // 행, 열, 배열 크기
+void dfs(int col, int row) { // 행, 열
     int i;
-    if(sudoku[col][row]==sudoku[checkCol][checkRow]) {
-        return;
-    }
     
-    check[row+1]=1;
-    if(!sudoku[col][row]) {
-        sudoku[col][row]=n; // 값이 0이면 n 입력
-        checkCol=col;
-        checkRow=row;
+    for(i=1; i<size; i++) {
+        if(!sudoku[col][row]) { // 빈 칸이라면
+            sudoku[col][row]=n;
+        }
+        dfs(col, row+1);
     }
-    dfs(col, row+1, size); // 가로 중복 값 확인
 }
-
-// n=1
-// dfs1(0, 0, 9)
-// dfs2(0, 1, 9)
-
 
 int main() {
     int i, j;
@@ -41,7 +22,7 @@ int main() {
             scanf("%d", sudoku[i][j]);
         }
     }
-    dfs(0, 0, 9);
+    dfs(0, 0);
     return 0;
 }
 
@@ -55,10 +36,6 @@ int main() {
 // 6 0 3 7 0 1 9 5 2
 // 2 5 8 3 9 4 7 6 0
 
-// [00][01][02][03][04][05][06][07][08]
-// [10][11][12][13][14][15][16][17][18]
-// [20][21][22][23][24][25][26][27][28]
-
-// 1. [n,0]이 들어옴
-// 2. 만약 [n,0]이 [n-1,0] 값과 같으면 return
-// 3. for문으로 dfs(n+1, sudoku) 실행
+// 후보를 스도쿠 위치로 잡는게 아닌 1~9를 후보로 잡음
+// 스도쿠를 탐색 -> 빈 칸 발견 -> 1부터 후보를 잡음 -> 가로 또는 세로, 3x3 위치에 1이 존재하는지 백트래킹 검사
+// -> 값이 존재하면 다음 후보 숫자로 다시 검사
