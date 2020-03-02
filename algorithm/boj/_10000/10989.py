@@ -1,21 +1,15 @@
 import sys
 
-def counting_sort(A):
-    if min(A) < 0:
-        raise
-    i, n, k = 0, len(A), max(A)+1
-    C = [0]*k
-    for j in range(n):
-        C[A[j]] = C[A[j]]+1
-    for j in range(k):
-        while C[j] > 0:
-            (A[i], C[j], i) = (j, C[j]-1,i+1)
+# 0부터 A 수열의 최대 값까지 각 카운트를 구함
+# A 수열 인덱스의 값을 인덱스, 카운트를 값으로 해서 cnt 리스트에 넣음
+# B 수열에 A 수열 끝 인덱스부터 카운트를 인덱스로 해서 값을 넣음
 
 if __name__ == "__main__":
 	N = int(sys.stdin.readline())
-	li = []
-	for i in range(N):
-		li.append(int(sys.stdin.readline()))
-	counting_sort(li)
-	for i in li:
-		print(i)
+	li = [0]*10001
+
+	for _ in range(N):
+		li[int(sys.stdin.readline())] += 1
+
+	for i in range(len(li)):
+		print(f'{i}\n' * li[i], end='')
