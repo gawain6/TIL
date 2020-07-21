@@ -1,9 +1,9 @@
-#include <iostream>
+#include <stdio.h>
 
-using namespace std;
-int main() {
-    double n1, n2;
-    cin >> n1 >> n2;
-    cout.precision(15);
-    cout << n1/n2 << endl;
+int main(void) {
+    double a, b;
+
+    scanf("%lf %lf", &a, &b);
+    printf("%.9lf\n", a/b);
+    return 0;
 }
