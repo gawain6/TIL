@@ -1,11 +1,12 @@
-#include <iostream>
+#include <stdio.h>
 
-using namespace std;
-int main() {
-    int n1, n2, n3;
-    cin >> n1 >> n2 >> n3;
-    cout << (n1+n2)%n3 << endl;
-    cout << (n1%n3 + n2%n3)%n3 << endl;
-    cout << (n1*n2)%n3 << endl;
-    cout << (n1%n3 * n2%n3)%n3 << endl;
+int main(void) {
+    int a, b, c;
+
+    scanf("%d %d %d", &a, &b, &c);
+    printf("%d\n", (a+b)%c);
+    printf("%d\n", ((a%c)+(b%c))%c);
+    printf("%d\n", (a*b)%c);
+    printf("%d\n", ((a%c)*(b%c))%c);
+    return 0;
 }
