@@ -1,12 +1,21 @@
-#include <iostream>
+#include <stdio.h>
 
-using namespace std;
-int main() {
-    int n1, n2;
-    cin >> n1;
-    cin >> n2;
-    cout << n1*(n2%10) << endl;
-    cout << n1*((n2/10)%10) << endl;
-    cout << n1*(n2/100) << endl;
-    cout << n1*n2 << endl;
+/*
+ * 1. a, b¸¦ ÀÔ·Â ¹ÞÀ½
+ * 2. b¸¦ ÀÚ¸´¼öº°·Î ³ª´®
+ * 3. a¿Í ³ª´« ÀÚ¸´¼öº° 3°³¸¦ °öÇÔ
+ * 4. °öÇÑ 3°³¸¦ Ãâ·Â
+*/
+
+int main(void) {
+    int a, b, n1, n2, n3;
+
+    scanf("%d %d", &a, &b);
+    n1 = a * (b % 10);
+    n2 = a * ((b % 100) - (b % 10));
+    n3 = a * ((b / 100) * 100);
+
+    printf("%d\n%d\n%d\n", n1, n2/10, n3/100);
+    printf("%d\n", n1 + n2 + n3);
+    return 0;
 }
