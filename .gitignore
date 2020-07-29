@@ -108,3 +108,4 @@ venv.bak/
 .bash_profile
 git-completion.bash
 git-prompt.sh
+libstdc++-6.dll
