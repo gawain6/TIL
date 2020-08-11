@@ -109,3 +109,11 @@ venv.bak/
 git-completion.bash
 git-prompt.sh
 libstdc++-6.dll
+
+#Visual Studio
+.vs/
+Debug/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
