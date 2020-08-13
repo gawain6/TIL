@@ -21,5 +21,6 @@ void main()
 {
 	A::Render();
 	B::Render();
+	A::Render();
 	cout << "Hello World!" << endl;
 }

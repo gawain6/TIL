@@ -117,3 +117,5 @@ Debug/
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+*.VC.db
+*.VC.VC.opendb
