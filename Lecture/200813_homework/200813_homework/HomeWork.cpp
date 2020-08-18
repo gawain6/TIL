@@ -6,12 +6,14 @@ using namespace std;
 2. 수학을 마지막으로 입력받으면 ############## 을 출력한다.
 3. 국어, 영어, 수학 순으로 한 줄씩 점수를 출력한다.
 4. 총점과 평균을 한 줄씩 출력한다.
-5. 마지막 줄에 ############## 을 출력한다.
+5. 평균은 double로 출력한다.
+6. 마지막 줄에 ############## 을 출력한다.
 */
 
 void main()
 {
-	int korean, english, math, total, avg;
+	int korean, english, math, total;
+	double avg;
 
 	cout << "국어: ";
 	cin >> korean;
@@ -20,7 +22,7 @@ void main()
 	cout << "수학: ";
 	cin >> math;
 	total = korean + english + math;
-	avg = total / 3;
+	avg = (double)total / 3;
 
 	cout << "################" << endl;
 	cout << "국어 점수: " << korean << endl;
