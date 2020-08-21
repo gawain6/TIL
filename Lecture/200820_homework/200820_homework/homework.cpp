@@ -5,8 +5,8 @@ using namespace std;
 /*
 1. 첫 줄에 1.가위 2.바위 3.보 4.종료 :: 출력한다.
 2. ############################ :: 구분자를 출력한다.
-3. 선택: :: 출력 후 입력받는다.
-4. 컴퓨터: 바위 :: rand()를 이용하여 출력한다. rand() % 10 값이 홀수면 가위, 짝수면 바위, 0이면 보를 뜻한다.
+3. 선택: :: 메뉴 중 하나를 입력받는다.
+4. 컴퓨터: 바위 :: rand()를 이용하여 출력한다. (rand() % 3) + 1
 5. 사용자: 바위 :: 선택에서 입력한 값을 출력한다.
 6. 무승부 입니다!! (승리 입니다!!) (패배 입니다!!) :: 승부의 결과를 출력한다.
 7. 1 ~ 2번은 고정 후 콘솔의 내용을 모두 지운다.
@@ -30,26 +30,40 @@ void main() {
 		if (4 == input)
 			break;
 
-		computer = rand() % 10;
-		if (0 == computer) {
-			cout << "컴퓨터: 보" << endl;
-			computer = 3;
-		}
-		else if (1 == computer % 2) {
-			cout << "컴퓨터: 가위" << endl;
-			computer = 1;
-		}
-		else {
-			cout << "컴퓨터: 바위" << endl;
-			computer = 2;
-		}
-
-		if (1 == input)
+		computer = (rand() % 3) + 1;
+		switch (input) {
+		case 1:
+			if (1 == computer)
+				cout << "컴퓨터: 가위" << endl;
+			else if (2 == computer)
+				cout << "컴퓨터: 바위" << endl;
+			else
+				cout << "컴퓨터: 보" << endl;
 			cout << "사용자: 가위" << endl;
-		else if (2 == input)
+			break;
+		case 2:
+			if (1 == computer)
+				cout << "컴퓨터: 가위" << endl;
+			else if (2 == computer)
+				cout << "컴퓨터: 바위" << endl;
+			else
+				cout << "컴퓨터: 보" << endl;
 			cout << "사용자: 바위" << endl;
-		else
+			break;
+		case 3:
+			if (1 == computer)
+				cout << "컴퓨터: 가위" << endl;
+			else if (2 == computer)
+				cout << "컴퓨터: 바위" << endl;
+			else
+				cout << "컴퓨터: 보" << endl;
 			cout << "사용자: 보" << endl;
+			break;
+		default:
+			cout << "잘못 입력하였습니다." << endl;
+			system("pause");
+			continue;
+		}
 
 		if (input == computer) {
 			cout << "무승부 입니다!!" << endl;
