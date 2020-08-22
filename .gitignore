@@ -110,6 +110,7 @@ git-completion.bash
 git-prompt.sh
 libstdc++-6.dll
 test.cpp
+/Lecture/Contents
 
 #Visual Studio
 .vs/
