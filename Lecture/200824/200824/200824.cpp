@@ -1,9 +1,9 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 void main() {
-	int a = 10;
-	int b = (++a) + 2;
+	long long a = 10;
 
-	cout << 3 + 4 * 5 / 2 - 10 << endl;
+	printf("%d\n", sizeof(a));
 }
