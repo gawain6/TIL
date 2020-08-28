@@ -9,11 +9,18 @@ using namespace std;
 4. bubble sort를 이용해 배열 값을 오름차순으로 정렬한다.
 */
 
+// 1 ~ 45 숫자를 
+
 void Rand_Extraction(int _lotto[], int _size);
 void Redundancy_Check(int _lotto[], int _currentIndex);
 void Bubble_Sort(int _lotto[], int _size);
 void Show_Lotto(int _lotto[], int _cnt, int _size);
 void Lotto();
+
+void main()
+{
+	Lotto();
+}
 
 void Rand_Extraction(int _lotto[], int _size)
 {
@@ -43,13 +50,13 @@ void Bubble_Sort(int _lotto[], int _size)
 
 	for (int i = 0; i < _size - 1; ++i)
 	{
-		for (int j = i + 1; j < _size - i; ++j)
+		for (int j = 1; j < _size - i; ++j)
 		{
-			if (_lotto[j] < _lotto[j-1])
+			if (_lotto[j] < _lotto[j - 1])
 			{
 				temp = _lotto[j];
-				_lotto[j] = _lotto[j-1];
-				_lotto[j] = temp;
+				_lotto[j] = _lotto[j - 1];
+				_lotto[j - 1] = temp;
 			}
 		}
 	}
@@ -69,16 +76,11 @@ void Lotto()
 	int cnt = 7;
 	int size = sizeof(lotto) / sizeof(int);
 
+	srand(unsigned(time(NULL)));
 	for (int i = 1; i < cnt; ++i)
 	{
 		Rand_Extraction(lotto, size);
 		Bubble_Sort(lotto, size);
 		Show_Lotto(lotto, i, size);
 	}
-}
-
-void main()
-{
-	srand(unsigned(time(NULL)));
-	Lotto();
 }
