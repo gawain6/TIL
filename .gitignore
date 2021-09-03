@@ -25,6 +25,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+*.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -109,8 +110,6 @@ venv.bak/
 git-completion.bash
 git-prompt.sh
 libstdc++-6.dll
-test.cpp
-/Lecture/Contents
 
 #Visual Studio
 .vs/
@@ -121,6 +120,3 @@ Debug/
 *.vcxproj.user
 *.VC.db
 *.VC.VC.opendb
-
-#Unity
-Unity/
