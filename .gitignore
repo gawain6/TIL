@@ -121,6 +121,7 @@ Debug/
 *.vcxproj.user
 *.VC.db
 *.VC.VC.opendb
+*.json
 
 #Unity
 Unity/
